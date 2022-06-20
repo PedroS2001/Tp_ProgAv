@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
-				// Indicamos que los endpong, no requieren estar logeados
+				// Estos endpoints van a ser accesibles por todos
 				.authorizeRequests().antMatchers("/authenticate", "/register", "/autos", "/autos/{id}").permitAll().
 		
 				//el resto va a requerir autenticacion
