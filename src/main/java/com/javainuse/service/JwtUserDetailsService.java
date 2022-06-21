@@ -33,16 +33,16 @@ public class JwtUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
 	
-		List<SimpleGrantedAuthority> auth= new ArrayList<>();
-		if(user.getUsername().equals("admin")) {
-			auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));	
+		List<SimpleGrantedAuthority> roles = new ArrayList<>();
+		
+		if(user.getRol().equals("admin")){
+			roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));	
 		}else {
-			auth.add(new SimpleGrantedAuthority("ROLE_USER"));
+			roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
 		
-		
 		//Pasamos usuario y pass como nos llega de la peticion. La encriptacion y validacion 
-		return new User(user.getUsername(), user.getPassword(), auth);
+		return new User(user.getUsername(), user.getPassword(), roles);
 	}
 	
 	public Usuario save(UserDTO user) {
